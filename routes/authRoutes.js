@@ -50,7 +50,7 @@ router.post("/post-login",(req,res)=>{
 
 //home
 router.get("/home",(req,res)=>{
-  res.send("success");
+  res.render("home")
 })
 
 //regester routes

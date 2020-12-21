@@ -11,6 +11,10 @@ app.use(express.static("public"))
 const authRoutes=require("./routes/authRoutes");
 app.use(authRoutes);
 
+const homeRoutes=require("./routes/homeRoute");
+app.use(homeRoutes);
+
+
 
 
 
