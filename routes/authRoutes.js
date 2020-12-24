@@ -50,7 +50,14 @@ router.post("/post-login",(req,res)=>{
 
 //home
 router.get("/home",(req,res)=>{
-  res.render("home")
+  connection.query('select product.pid,student.name,student.email,product.img,product.prod_name,product.prod_desc,product.posted_on,product.phno,product.price from student inner join product on student.usn=product.usn;',function(error,results,fields){
+    if (error) throw error;
+    console.log(results);
+  res.render("home",{results:results})
+
+
+  })
+  
 })
 
 //regester routes
@@ -89,5 +96,14 @@ router.post("/post-reg",(req,res)=>{
     res.render("login",{error:1,msg:"Successfully registered!. Kindly login with the same credentials",color:"success"})
 })
 
-
+router.get("/ji",(req,res)=>{
+  res.render("test")
+})
+router.post("/ji",(req,res)=>{
+   name=req.body.name;
+})
+router.get("/content",(req,res)=>{
+  console.log(req.query);
+  res.redirect("/ji");
+})
 module.exports=router;

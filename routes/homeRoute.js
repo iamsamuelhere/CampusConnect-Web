@@ -9,11 +9,12 @@ var storage=multer.diskStorage({
         cb(null, file.fieldname + '-' + Date.now()+path.extname(file.originalname) )
     }
 })
-var upload=multer({storage:storage,limits: { fileSize: 1000000 },  
+var upload=multer({storage:storage,  
 }).single('img')
 
 //my sql
 var mysql      = require('mysql');
+const { route } = require('./authRoutes');
 var connection = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
@@ -35,32 +36,38 @@ router.get("/createProduct",(req,res)=>{
 })
 
 router.post("/product-form",(req,res)=>{
-    console.log(req.body);
-    // upload(req, res, function (err) {
-    //     if (err) {
-    //      console.log(err);
-    //     } else  {
-    //         console.log(req.file)
-    //         img='/upload/'+req.file.filename;
-            
-    //         connection.query('insert into Product SET ?',{
-    //             usn:req.body.
-    //         })
+    upload(req, res, function (err) {
+        if (err) {
+         console.log(err);
+        } else  {
 
-
-    //         res.render("img",{img:img})
-            
-    //     }
-    
-      
-    //   })
-   
+        img='upload/'+req.file.filename;
+        console.log(req.body)
+        connection.query('INSERT INTO product SET ?', {
+        usn:req.body.usn,
+        prod_name:req.body.productname,
+        prod_desc:req.body.description,
+        phno:req.body.phno,
+        img:img,
+        price:req.body.price
+        }, function (error, results, fields) {
+          if (error) throw error;
+          console.log("inserted");
+          res.redirect("/home")
+        });           
+        }
+      })
 })
 
+router.get("/:pid",(req,res)=>{
+connection.query('select * from product where pid=? select * from student ',[req.params.pid],function(error,results,fields){
+  if(error )throw error;
+  console.log("----------");
+  console.log(results);
+  res.render("Eachproduct",{results:results})
+})
 
-
-
-
+})
 
 
 module.exports=router;

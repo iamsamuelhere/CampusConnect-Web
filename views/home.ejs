@@ -6,6 +6,98 @@
   <body>
 <%- include('./partials/navbar'); -%>
 
+  <div class="container">
+    <div class="row" >
+      
+      <% for(i=0;i<results.length;i++){ %>
+<div style="padding:20px;">
+  <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12" >
+         
+    <div class="card " style="width:18rem;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+      <img class="card-img-top p-1" src= <%= results[i].img %> alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title" style="text-align: center;"><%=results[i].prod_name %></h5>
+        <b>About product:</b> <span ><%=results[i].prod_desc%></span><br>
+        <b>Seller:</b> <span ><%=results[i].name%></span><br>
+        <b>Posted on:</b> <span ><%=results[i].posted_on%></span><br>
+        <b>Phone number:</b> <span ><%=results[i].phno%></span><br>
+
+
+
+        <button type="button" class="btn btn-outline-danger btn-block " >₹<%= results[i].price %></button>
+        
+<form method="GET" action="/<%=results[i].pid%>" >
+  <button type="submit" class="btn btn-outline-success btn-block">Read more</button>
+</form>
+
+        
+  
+      
+
+      </div>
+    
+    </div>
+
+  
+
+
+
+
+
+
+</div>
+
+</div>
+      <% } %>
+
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Enter your details:</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        
+
+         
+          <form action="/email" method="POST">
+            
+            <div class="form-group">
+              <input type="email" value="hi" readonly class="form-control" name="email" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+              <input type="number" class="form-control"  name="phno" placeholder="Phone number">
+            </div>
+    
+
+            <button type="submit" class="btn btn-primary" >Save changes</button>
+  
+            </form>
+          
+   
+      
+        </div>
+        
+      
+        
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
