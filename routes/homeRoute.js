@@ -60,7 +60,7 @@ router.post("/product-form",(req,res)=>{
 })
 
 router.get("/:pid",(req,res)=>{
-connection.query('select * from product where pid=? select * from student ',[req.params.pid],function(error,results,fields){
+connection.query('select * from product where pid=? ',[req.params.pid],function(error,results,fields){
   if(error )throw error;
   console.log("----------");
   console.log(results);
