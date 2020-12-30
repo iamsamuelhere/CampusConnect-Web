@@ -21,7 +21,12 @@ var connection = mysql.createConnection({
 
 //routes
 router.get("/",(req,res)=>{
-    res.render("login",{error:0,msg:"",color:""})
+  connection.query('select count(*)as users from student;select count(*)as products from product',function(err,results,fields){
+    if(err)throw err;
+    console.log(results)
+    res.render("login",{error:0,msg:"",color:"",count:results})
+  })
+    
 })
 
 router.post("/post-login",(req,res)=>{
@@ -32,7 +37,7 @@ router.post("/post-login",(req,res)=>{
 
     if(results.length==0)
     //user not registered
-    res.render("login",{error:1,msg:"User not Registered. Kindly register!",color:"danger"})
+    res.render("login",{error:1,msg:"User not Registered. Kindly register!",color:"danger",count:[[{users:""}],[{products:""}]]})
     else{
       HashPassDb=results[0].password
       req.body.password;
@@ -40,7 +45,7 @@ router.post("/post-login",(req,res)=>{
         if(result==true)
         res.redirect("/home")
         else{
-          res.render("login",{error:1,msg:"Wrong password.Login with correct credentials",color:"danger"})
+          res.render("login",{error:1,msg:"Wrong password.Login with correct credentials",color:"danger",count:""})
         }
     });
     }
