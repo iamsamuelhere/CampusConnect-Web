@@ -1,0 +1,74 @@
+<%- include("./partials/header") -%>
+<title>Home Page</title>
+
+  </head>
+  <body>
+    <%- include('./partials/navbar'); -%>
+    <div class="container mt-5">
+
+        <div class="row">
+            <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 sol-7">
+                
+                    <div class="container">
+                      <h1 class="display-5" style="text-align: center;">Know your rankings</h1>
+                    </div>
+                    <form method="POST" action="/ranks-data">
+                         <div class="form-row">
+                            <div class="form-group col-6">
+                                <input type="text" class="form-control" name="usn" placeholder="Enter USN (ex:1EP18CS000)" required>
+                              </div>
+                              <div class="form-group col-6"> 
+                                <input  type="number" step="any" class="form-control" name="cgpa" placeholder="Enter your CGPA" >
+                              </div>
+                         </div>
+
+    
+                        <button type="submit" class="btn btn-danger btn-block">Know your rankings</button>
+
+                        <small id="emailHelp" class="form-text text-muted" style="text-align: center;">we will get back to u shortly.</small>
+
+                        
+
+                    
+
+                      </form>
+        
+                  </div>
+                  <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 sol-5">
+                    <table class="table table-hover table-dark">
+                        <thead>
+                          <tr>
+                            <th scope="col">Usn</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Cgpa</th>
+                            <th scope="col">Branch</th>
+                            <th scope="col">Semester</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <% for(i=0;i<results.length;i++){ %>
+                                <tr>
+                                    <td><%= results[i].usn %></td>
+                                    <td><%= results[i].name %></td>
+                                    <td><%= results[i].cgpa %></td>
+                                    <td><%= results[i].branch %></td>
+                                    <td><%= results[i].semester %></td>
+                                  </tr>
+                           <% }%>
+                      
+                        </tbody>
+                      </table>
+                      
+                  </div>
+        
+            </div>
+        </div>
+    
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>

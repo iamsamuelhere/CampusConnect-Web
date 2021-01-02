@@ -3,6 +3,10 @@ const router=require('express').Router();
 var multer  = require('multer')
 const path = require('path')
 
+var api_key = 'a3642b203cd03f4542e83446248dbce8-b6190e87-a80c89a1';
+var domain = 'sandbox87d0d9fb54cd4179920c5fc94a279699.mailgun.org';
+var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
+
 var storage=multer.diskStorage({
     destination:"./public/upload",
     filename:function(req,file,cb){
@@ -34,6 +38,60 @@ var connection = mysql.createConnection({
 router.get("/createProduct",(req,res)=>{
     res.render("product")
 })
+
+router.get("/ranks",(req,res)=>{
+  connection.query('select student.name,ranks.usn,student.branch,student.semester,ranks.cgpa from student inner join ranks on student.usn=ranks.usn order by ranks.cgpa desc;',function(error,results,fields){
+    if(error) throw error
+    res.render("ranks",{results:results})
+  })
+
+})
+router.post("/ranks-data",(req,res)=>{
+  console.log(req.body);
+  cgpa=Number(req.body.cgpa)
+//check exists or not
+connection.query('select * from ranks where usn=? ',[req.body.usn],function(error,results,fields){
+if(results.length==0){
+  connection.query('insert into ranks SET ?',{usn:req.body.usn,cgpa:cgpa},function(error,results,fields){
+    if(error) throw error;
+  })
+res.redirect("/ranks")
+}
+else{
+res.redirect("/ranks")
+}
+
+
+})
+
+})
+
+router.get("/table",(req,res)=>{
+  res.render("ranktable")
+})
+
+
+router.get("/requestProduct",(req,res)=>{
+  res.render("sendRequest")
+})
+
+router.post("/requestProduct",(req,res)=>{
+  console.log(req.body)
+  var data = {
+    from: 'tradex.supplychain@gmail.com',
+    to: req.body.email,
+    subject: req.body.pname,
+    text: '<body><h1>Name:${req.body.name} is requesting ${req.body.pname} for Price ${req.body.price}Phone no:${req.body.ph no}</h1></body>'
+  };
+  mailgun.messages().send(data, function (error, body) {
+    if (error)
+    console.log(error);
+    console.log(body+" sent");
+  });
+  res.redirect("/requestProduct")
+})
+
+
 
 router.post("/product-form",(req,res)=>{
     upload(req, res, function (err) {
@@ -69,6 +127,8 @@ connection.query('select * from product where pid=? ',[req.params.pid],function(
 })
 
 })
+
+
 
 
 
