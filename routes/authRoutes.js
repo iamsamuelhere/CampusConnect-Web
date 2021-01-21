@@ -22,7 +22,7 @@ var connection = mysql.createConnection({
 //routes
 router.get("/",(req,res)=>{
   connection.query('select count(*)as users from student;select count(*)as products from product',function(err,results,fields){
-    if(err)throw err;
+    if(err)console.log(err);
     console.log(results)
     res.render("login",{error:0,msg:"",color:"",count:results})
   })

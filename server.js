@@ -1,3 +1,4 @@
+
 const express=require("express");
 const ejs=require("ejs");
 const bodyParser = require("body-parser");
@@ -14,7 +15,8 @@ app.use(authRoutes);
 const homeRoutes=require("./routes/homeRoute");
 app.use(homeRoutes);
 
-
+const jobRoutes=require("./routes/jobRoutes");
+app.use(jobRoutes);
 
 
 

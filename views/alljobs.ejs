@@ -1,0 +1,62 @@
+<%- include('./partials/header'); -%>
+
+
+    <title>Listing Jobs</title>
+  </head>
+  <body>
+
+
+<%- include('./partials/navbar'); -%>
+<div class="container">
+  <div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-l2">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <h1 class="display-4" style="text-align: center;">Applied Candidates👨‍🎓</h1>
+          <p class="lead" style="text-align: center;"> Profiles of the applied students</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+ <div class="container">
+     <div class="row">
+      <% for(i=0;i<results.length;i++){ %>
+         <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12" style="width: 400rem;margin:20px;">
+            <div class="card" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" >
+                <div class="card-body">
+                  <p class="card-title">🙍<b>Name :</b> <%= results[i].name %></p><br>
+                  <p class="card-content">🚀<b>Email id:</b> <%= results[i].email %></p>
+                  <p class="card-title" >👨‍🔬<b>Branch:</b> <%= results[i].branch%></p>
+                  <p class="card-title" >📚<b>Semester:</b> <%= results[i].semester %></p>
+                  <p class="card-title" >📞<b>Phone no:</b> <%= results[i].phno %></p>
+                  <p class="card-content">💼<b>Role applying for: </b><%=results[i].job_description %></p>
+                  <p class="card-content">📅<b>Applied on :</b><%=results[i].posted_on%></p>
+
+                  
+                  <p class="card-text"></p>
+                  <a href=<%= results[i].res %> class="btn btn-danger btn-block">View Resume</a>
+                </div>
+              </div>
+    
+         </div>
+         <% } %>
+         
+     </div>
+
+ </div>
+
+
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>

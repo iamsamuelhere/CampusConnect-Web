@@ -117,16 +117,16 @@ router.post("/product-form",(req,res)=>{
       })
 })
 
-router.get("/:pid",(req,res)=>{
-  console.log(req.params.pid)
-connection.query('select * from product where pid=? ',[req.params.pid],function(error,results,fields){
-  if(error )throw error;
-  console.log("----------");
-  console.log(results);
-  res.render("Eachproduct",{results:results})
-})
+// router.get("/:pid",(req,res)=>{
+//   console.log(req.params.pid)
+// connection.query('select * from product where pid=? ',[req.params.pid],function(error,results,fields){
+//   if(error )throw error;
+//   console.log("----------");
+//   console.log(results);
+//   res.render("Eachproduct",{results:results})
+// })
 
-})
+// })
 
 
 

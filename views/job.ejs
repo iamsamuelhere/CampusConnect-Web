@@ -1,0 +1,75 @@
+<%- include('./partials/header'); -%>
+
+
+    <title>job</title>
+  </head>
+  <body>
+
+
+<%- include('./partials/navbar'); -%>
+<div class="container">
+  <div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-l2">
+      <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+          <h1 class="display-4" style="text-align: center;">Candidates Application📝</h1>
+          <p class="lead" style="text-align:center;">Students can submit their profiles,recruiters will have a look and contact you if there is an match.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+ <div class="container">
+     <div class="row">
+         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+          <form action="/job-form" method="POST" enctype="multipart/form-data">
+      
+           <div class="form-row">
+            <div class="form-group col-md-6">
+              <input type="text" class="form-control" name="usn" placeholder="Enter USN">            </div>
+            <div class="form-group col-md-6">
+              <input type="number" class="form-control" name="phno" placeholder="Phone number">
+            </div>
+
+           </div>
+           <div class="form-row">
+            <div class="form-group col-md-12">
+              <textarea type="text" class="form-control" name="desc"  placeholder="Mention the role you are applying to Ex: Web developer, Machine Learning" rows="5"></textarea> 
+                       </div>
+     
+    
+           </div>
+      
+           <div >
+            <input type="file"  name="res" >
+            
+          </div>
+            <br><br>
+            <button type="submit" class="btn btn-outline-primary btn-block">Apply</button>
+          </form>
+    <br>
+         </div>
+         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6" >
+          <img class="img-fluid" src="img/job3.jpg" >
+         
+        </div>
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+          <form method="GET" action="/all">
+            <button type="submit" class="btn btn-danger btn-block btn-lg">💼I am recruiter</button>
+          </form>
+        </div>
+ </div>
+ <br>
+
+
+ 
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
