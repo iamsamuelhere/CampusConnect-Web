@@ -3,9 +3,7 @@ const router=require('express').Router();
 var multer  = require('multer')
 const path = require('path')
 
-var api_key = 'a3642b203cd03f4542e83446248dbce8-b6190e87-a80c89a1';
-var domain = 'sandbox87d0d9fb54cd4179920c5fc94a279699.mailgun.org';
-var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
+
 
 var storage=multer.diskStorage({
     destination:"./public/upload",

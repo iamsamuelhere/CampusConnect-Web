@@ -1,6 +1,7 @@
+const dotenv = require('dotenv')
+require('dotenv').config()
 const router=require("express").Router()
 const bcrypt = require('bcrypt');
-
 //my sql
 var mysql      = require('mysql');
 var connection = mysql.createConnection({
